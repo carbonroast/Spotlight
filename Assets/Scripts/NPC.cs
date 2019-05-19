@@ -15,7 +15,8 @@ public class NPC : Humanoid {
 
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+        base.Start();
         Invoke("AiControls", 1.0f);
 
 	}
@@ -83,5 +84,10 @@ public class NPC : Humanoid {
         //Debug.Log("Next Movement at " + (Time.time + newActionTime));
         idle = true;
         Invoke("AiControls", newActionTime);
+    }
+
+    public override void Death()
+    {
+        this.gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 }

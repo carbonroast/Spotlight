@@ -46,16 +46,17 @@ public class Sniper : MonoBehaviour
     {
         if (fire)
         {
-            Debug.Log("fire");
             RaycastHit hit;
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(this.transform.position);
             Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-            Debug.Log("Ray Origin :" + ray.origin + " Direction :" +  ray.direction );
             Debug.DrawLine(mainCamera.transform.position, this.transform.position, Color.blue);
-            if (Physics.Raycast(ray, out hit, 20f))
+            LayerMask mask = LayerMask.GetMask("Unit");
+            if (Physics.Raycast(ray, out hit, 20f, mask))
             {
                 GameObject objectHit = hit.transform.gameObject;
                 Debug.Log("hit " + objectHit.gameObject.name);
+
+                objectHit.GetComponent<Humanoid>().Death();
             }
         }
 

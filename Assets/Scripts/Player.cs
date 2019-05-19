@@ -6,9 +6,7 @@ public class Player : Humanoid {
 
     public Vector3 input;
 	// Use this for initialization
-	void Start () {
-		
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
