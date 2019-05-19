@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4908514051224032030}
   - component: {fileID: 4908514051224032017}
   - component: {fileID: 4908514051224032016}
+  - component: {fileID: 2349851718804052433}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -106,10 +107,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.6
-  cooldownRange: {x: 0, y: 0}
+  cooldownRange: {x: 4, y: 6}
+  searchRadius: {x: 3, y: 5}
+  walkDurationRange: {x: 2, y: 4}
   currentPosition: {x: 0, y: 0, z: 0}
   idle: 1
   newLocation: {x: 0, y: 0, z: 0}
   duration: 0
   direction: {x: 0, y: 0, z: 0}
   newActionTime: 0
+--- !u!195 &2349851718804052433
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908514051224032019}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 0
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 0
