@@ -29,7 +29,7 @@ public class NPC : Humanoid {
     {
         if (!idle)
         {
-            walk();
+            Walk();
         }   
     }
 
@@ -59,8 +59,8 @@ public class NPC : Humanoid {
     {
         float walkx = Mathf.Floor(Random.Range(-2f, 2f)) / 2;
         float walkz = Mathf.Floor(Random.Range(-2f, 2f)) / 2; 
-        Debug.Log("Current Position " + currentPosition + " " + walkx + " " + walkz);
-        Debug.Log(new Vector3(currentPosition.x + walkx, 0, currentPosition.z + walkz).normalized);
+        //Debug.Log("Current Position " + currentPosition + " " + walkx + " " + walkz);
+        //Debug.Log(new Vector3(currentPosition.x + walkx, 0, currentPosition.z + walkz).normalized);
         return new Vector3(walkx, 0, walkz);
     }
 
@@ -69,7 +69,7 @@ public class NPC : Humanoid {
         return Random.Range(4, 6);
     }
 
-    public override void  walk()
+    public override void  Walk()
     {
         this.transform.Translate(direction * Time.fixedDeltaTime * speed);
     }

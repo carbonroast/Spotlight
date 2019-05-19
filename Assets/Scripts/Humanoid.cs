@@ -7,7 +7,7 @@ public class Humanoid : MonoBehaviour {
     public float speed;
     
 
-    public virtual void walk() { }
+    public virtual void Walk() { }
     
-    public virtual void death() { }
+    public virtual void Death() { }
 }

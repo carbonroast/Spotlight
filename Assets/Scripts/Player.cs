@@ -12,22 +12,22 @@ public class Player : Humanoid {
 	
 	// Update is called once per frame
 	void Update () {
-        GetInput();
+        GetInputs();
 	}
 
     void FixedUpdate()
     {
-        walk();
+        Walk();
     }
 
-    public void GetInput()
+    public void GetInputs()
     {
         float walkx = Input.GetAxisRaw("Horizontal");
         float walkz = Input.GetAxisRaw("Vertical");
         input = new Vector3(walkx, 0, walkz);
     }
 
-    public override void walk()
+    public override void Walk()
     {
 
         this.transform.Translate( input * Time.fixedDeltaTime * speed);
