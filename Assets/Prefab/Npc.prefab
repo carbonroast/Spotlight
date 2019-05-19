@@ -106,16 +106,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16ed43b175cb4640aa1745f8886a188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.6
+  speed: 1
   cooldownRange: {x: 4, y: 6}
   searchRadius: {x: 3, y: 5}
-  walkDurationRange: {x: 2, y: 4}
   currentPosition: {x: 0, y: 0, z: 0}
   idle: 1
   newLocation: {x: 0, y: 0, z: 0}
-  duration: 0
-  direction: {x: 0, y: 0, z: 0}
   newActionTime: 0
+  agent: {fileID: 2349851718804052433}
 --- !u!195 &2349851718804052433
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -126,13 +124,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 1
+  m_Acceleration: 999
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 999
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 0
   m_Height: 2
   m_BaseOffset: 1

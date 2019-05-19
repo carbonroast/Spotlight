@@ -31,7 +31,7 @@ public class Sniper : MonoBehaviour
     {
         float walkx = Input.GetAxisRaw("Horizontal");
         float walkz = Input.GetAxisRaw("Vertical");
-        input = new Vector3(walkx, walkz, 0);
+        input = new Vector3(walkx, walkz, 0).normalized;
 
         fire = Input.GetButtonDown("Fire1");
     }

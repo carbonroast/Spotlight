@@ -25,7 +25,7 @@ public class Player : Humanoid {
     {
         float walkx = Input.GetAxisRaw("Horizontal");
         float walkz = Input.GetAxisRaw("Vertical");
-        input = new Vector3(walkx, 0, walkz);
+        input = new Vector3(walkx, 0, walkz).normalized;
 
         fire = Input.GetButtonDown("Fire1");
     }

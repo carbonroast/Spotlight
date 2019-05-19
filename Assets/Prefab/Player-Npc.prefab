@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b69d5227ea9adc4a896ff3f45c99894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 1
   input: {x: 0, y: 0, z: 0}
   fire: 0
   OverlappingNpcs: []
