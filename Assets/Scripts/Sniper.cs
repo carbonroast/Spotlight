@@ -31,6 +31,7 @@ public class Sniper : MonoBehaviour
     {
         float walkx = Input.GetAxisRaw("Horizontal");
         float walkz = Input.GetAxisRaw("Vertical");
+        //its a sprite
         input = new Vector3(walkx, walkz, 0).normalized;
 
         fire = Input.GetButtonDown("Fire1");
@@ -57,6 +58,7 @@ public class Sniper : MonoBehaviour
                 Debug.Log("hit " + objectHit.gameObject.name);
 
                 objectHit.GetComponent<Humanoid>().Death();
+                objectHit.GetComponent<Humanoid>().alive = false;
             }
         }
 

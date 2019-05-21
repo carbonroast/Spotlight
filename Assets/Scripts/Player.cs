@@ -43,6 +43,7 @@ public class Player : Humanoid {
             if(OverlappingNpcs.Count > 0)
             {
                 OverlappingNpcs[0].gameObject.GetComponent<Humanoid>().Death();
+                OverlappingNpcs[0].gameObject.GetComponent<Humanoid>().alive = false;
                 OverlappingNpcs.RemoveAt(0);
             }
         }
@@ -52,7 +53,7 @@ public class Player : Humanoid {
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Unit"))
         {
-            Debug.Log("enter");
+            //Debug.Log("enter");
             OverlappingNpcs.Add(other.gameObject);
         }
 
@@ -62,7 +63,7 @@ public class Player : Humanoid {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Unit"))
         {
-            Debug.Log("exit");
+            //Debug.Log("exit");
             OverlappingNpcs.Remove(other.gameObject);
         }
     }

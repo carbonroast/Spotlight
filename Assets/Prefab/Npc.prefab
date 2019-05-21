@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  alive: 1
   cooldownRange: {x: 4, y: 6}
   searchRadius: {x: 3, y: 5}
   currentPosition: {x: 0, y: 0, z: 0}

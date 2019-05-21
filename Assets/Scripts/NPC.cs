@@ -86,12 +86,12 @@ public class NPC : Humanoid {
         Debug.DrawLine(this.transform.position, new Vector3(x, 0, z), Color.cyan, 4f);
         if (check)
         {
-            Debug.Log("Path is Good");
+            //Debug.Log("Path is Good");
             return new Vector3(x, 0, z);
         }
         else
         {
-            Debug.Log("False Trying again");
+            //Debug.Log("False Trying again");
             return NextLocation(searchRadius);
         }
     }
