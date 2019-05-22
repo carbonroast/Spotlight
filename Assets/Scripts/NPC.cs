@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPC : Humanoid {
 
+    public Animator anim;
     public Vector2 cooldownRange;
     public Vector2 searchRadius;
     //public Vector2 walkDurationRange;
@@ -21,15 +22,18 @@ public class NPC : Humanoid {
     // Use this for initialization
     public override void Start () {
         base.Start();
-        path = new NavMeshPath();
+        agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+        path = new NavMeshPath();
+        Debug.Log("AGENT: " + agent.hasPath);
+        anim = GetComponent<Animator>();
         Invoke("AiControls", 1.0f);
+
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 	}
 
     public void LateUpdate()
@@ -37,6 +41,7 @@ public class NPC : Humanoid {
         if (agent.velocity.sqrMagnitude > Mathf.Epsilon)
         {
             transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+
         }
     }
     void FixedUpdate()
@@ -55,19 +60,10 @@ public class NPC : Humanoid {
 
     public void AiControls()
     {
-
         currentPosition = this.transform.position;
-        //duration = AiWalkDuration(walkDurationRange);
-
         newLocation = NextLocation(searchRadius);
-        //Debug.Log("Moving " + Time.time);
-        //Debug.Log("Moving until " + (Time.time + duration));
-
-        idle = false;
         Walk();
         StartCoroutine("Stop");
-
-        
     }
 
     public Vector3 NextLocation(Vector2 searchRadius)
@@ -77,44 +73,42 @@ public class NPC : Humanoid {
 
         float x = (Mathf.Sin(Mathf.Deg2Rad * angle) * radius) + this.currentPosition.x;
         float z = (Mathf.Cos(Mathf.Deg2Rad * angle) * radius) + this.currentPosition.z;
-        //float walkx = Mathf.Floor(Random.Range(-2f, 2f)) / 2;
-        //float walkz = Mathf.Floor(Random.Range(-2f, 2f)) / 2; 
-        //Debug.Log("Current Position " + currentPosition + " " + walkx + " " + walkz);
-        //Debug.Log(new Vector3(currentPosition.x + walkx, 0, currentPosition.z + walkz).normalized);
+
         bool check = NavMesh.CalculatePath(this.transform.position, new Vector3(x, 0, z), NavMesh.AllAreas, path);
 
         Debug.DrawLine(this.transform.position, new Vector3(x, 0, z), Color.cyan, 4f);
         if (check)
         {
-            //Debug.Log("Path is Good");
             return new Vector3(x, 0, z);
         }
         else
         {
-            //Debug.Log("False Trying again");
             return NextLocation(searchRadius);
         }
     }
 
-    //public float AiWalkDuration(Vector2 walkDurationRange)
-    //{
-    //    return Random.Range(walkDurationRange.x, walkDurationRange.y);
-    //}
+
     public void CheckIfWalking()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            //Debug.Log(agent.hasPath + " " + agent.velocity.sqrMagnitude);
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                idle = true;
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    idle = true;
+                }
             }
         }
     }
     public override void  Walk()
     {
-        //Debug.DrawLine(this.transform.position, direction, Color.red, 4f);
-        //this.transform.Translate(direction * Time.fixedDeltaTime * speed);
+        idle = false;
+        SetAnimation("idle", idle);
+        PlayAnimation("idle", 0, 0f);
         agent.destination = newLocation;
+
     }
 
     IEnumerator Stop()
@@ -123,18 +117,27 @@ public class NPC : Humanoid {
         {
             yield return null;
         }
-        //Debug.Log("Stopped at " + Time.time);
-        //this.transform.Translate(new Vector3(0, 0, 0));
         newActionTime = WalkCooldown(cooldownRange);
-        //Debug.Log("Next Movement at " + (Time.time + newActionTime));
-        idle = true;
+        SetAnimation("idle", idle);
+        PlayAnimation("idle", 0, 0f);
         Invoke("AiControls", newActionTime);
     }
 
     public override void Death()
     {
-        this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        alive = false;
+        SetAnimation("alive", alive);
+        PlayAnimation("hit", 0, 0f);
+        agent.Stop();
+        //this.gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 
-
+    public void SetAnimation(string name, bool boolean)
+    {
+        anim.SetBool(name, boolean);
+    }
+    public void PlayAnimation(string name, int layer, float time)
+    {
+        anim.Play(name, layer, time);
+    }
 }

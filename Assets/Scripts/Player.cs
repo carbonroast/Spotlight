@@ -43,7 +43,7 @@ public class Player : Humanoid {
             if(OverlappingNpcs.Count > 0)
             {
                 OverlappingNpcs[0].gameObject.GetComponent<Humanoid>().Death();
-                OverlappingNpcs[0].gameObject.GetComponent<Humanoid>().alive = false;
+                //OverlappingNpcs[0].gameObject.GetComponent<Humanoid>().alive = false;
                 OverlappingNpcs.RemoveAt(0);
             }
         }
