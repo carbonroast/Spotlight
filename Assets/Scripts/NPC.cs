@@ -3,33 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Animator))]
 public class NPC : Humanoid {
 
     public Animator anim;
     public Vector2 cooldownRange;
     public Vector2 searchRadius;
-    //public Vector2 walkDurationRange;
-    public Vector3 currentPosition;
     public bool idle;
     public Vector3 newLocation;
-    //public float duration;
-    //public Vector3 direction;
     public float newActionTime;
     public NavMeshPath path;
     public NavMeshAgent agent;
 
 
     // Use this for initialization
-    public override void Start () {
-        base.Start();
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        path = new NavMeshPath();
-        Debug.Log("AGENT: " + agent.hasPath);
+    public void Start () {
         anim = GetComponent<Animator>();
-        Invoke("AiControls", 1.0f);
-
-
+        SetPrefabHitBox();
+        NavMeshAgentSettings();
+        GetComponent<Rigidbody>().useGravity = false;
+        float startTime = Random.Range(0.0f, 4.0f);
+        Invoke("AiControls", startTime);
 	}
 	
 	// Update is called once per frame
@@ -52,6 +49,27 @@ public class NPC : Humanoid {
         }   
     }
 
+    public void SetPrefabHitBox()
+    {
+        CapsuleCollider CC = GetComponent<CapsuleCollider>();
+        CC.isTrigger = true;
+        CC.center = new Vector3(0, 1, 0);
+        CC.radius = 1;
+        CC.height = 2;
+        CC.direction = 1;
+    }
+    public void NavMeshAgentSettings()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.angularSpeed = 999;
+        agent.acceleration = 999;
+        agent.stoppingDistance = 0.2f;
+        agent.autoBraking = false;
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        agent.speed = speed;
+        path = new NavMeshPath();
+    }
 
     public float WalkCooldown(Vector2 cooldownRange)
     {
@@ -60,7 +78,6 @@ public class NPC : Humanoid {
 
     public void AiControls()
     {
-        currentPosition = this.transform.position;
         newLocation = NextLocation(searchRadius);
         Walk();
         StartCoroutine("Stop");
@@ -69,10 +86,10 @@ public class NPC : Humanoid {
     public Vector3 NextLocation(Vector2 searchRadius)
     {
         float radius = Random.Range(searchRadius.x, searchRadius.y);
-        float angle = Random.Range(0, 360);
+        float angle = Random.Range(0.0f, 360.0f);
 
-        float x = (Mathf.Sin(Mathf.Deg2Rad * angle) * radius) + this.currentPosition.x;
-        float z = (Mathf.Cos(Mathf.Deg2Rad * angle) * radius) + this.currentPosition.z;
+        float x = (Mathf.Sin(Mathf.Deg2Rad * angle) * radius) + this.transform.position.x;
+        float z = (Mathf.Cos(Mathf.Deg2Rad * angle) * radius) + this.transform.position.z;
 
         bool check = NavMesh.CalculatePath(this.transform.position, new Vector3(x, 0, z), NavMesh.AllAreas, path);
 
@@ -92,7 +109,6 @@ public class NPC : Humanoid {
     {
         if (!agent.pathPending)
         {
-            //Debug.Log(agent.hasPath + " " + agent.velocity.sqrMagnitude);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -125,11 +141,28 @@ public class NPC : Humanoid {
 
     public override void Death()
     {
+        Debug.Log("died");
+        CancelInvoke();
         alive = false;
         SetAnimation("alive", alive);
         PlayAnimation("hit", 0, 0f);
-        agent.Stop();
-        //this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        agent.isStopped = true;
+        StartCoroutine("Fade");
+        Debug.Log("dieddied");
+    }
+
+    IEnumerable Fade()
+    {
+        Debug.Log("out");
+        for (float f = 1f; f >= 0; f -= 0.1f)
+        {
+            Debug.Log("running");
+            Color c = this.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+            c.a = f;
+            this.GetComponentInChildren<SkinnedMeshRenderer>().material.color = c;
+            yield return null;
+        }
+        yield return null;
     }
 
     public void SetAnimation(string name, bool boolean)
