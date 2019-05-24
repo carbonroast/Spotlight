@@ -124,10 +124,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player-Npc
       objectReference: {fileID: 0}
+    - target: {fileID: 7650476118996173822, guid: 98ff43451a0ea2a4eb7bd14f17e09cce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7650476118996173819, guid: 98ff43451a0ea2a4eb7bd14f17e09cce,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1
+      value: -3.21
       objectReference: {fileID: 0}
     - target: {fileID: 7650476118996173819, guid: 98ff43451a0ea2a4eb7bd14f17e09cce,
         type: 3}
@@ -137,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 7650476118996173819, guid: 98ff43451a0ea2a4eb7bd14f17e09cce,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.79
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 7650476118996173819, guid: 98ff43451a0ea2a4eb7bd14f17e09cce,
         type: 3}
@@ -196,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 1000010759127040, guid: 134568deae123e7488798bf153729a7a, type: 3}
       propertyPath: m_Name
       value: TrollGiant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010759127040, guid: 134568deae123e7488798bf153729a7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013930652492, guid: 134568deae123e7488798bf153729a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -449,7 +458,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   cooldownRange: {x: 4, y: 5}
   searchRadius: {x: 5, y: 6}
-  currentPosition: {x: 0, y: 0, z: 0}
   idle: 0
   newLocation: {x: 0, y: 0, z: 0}
   newActionTime: 0
@@ -613,11 +621,11 @@ GameObject:
   - component: {fileID: 1877871224}
   - component: {fileID: 1877871223}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &1877871223
 MeshCollider:
@@ -692,6 +700,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1891249558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891249560}
+  - component: {fileID: 1891249559}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1891249559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891249558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b250260a9c8310e4087eecf0d8b08881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  units: 5
+  spawnables:
+  - {fileID: 1000010759127040, guid: 134568deae123e7488798bf153729a7a, type: 3}
+  map: {fileID: 0}
+  cooldownRange: {x: 4, y: 5}
+  searchRadius: {x: 4, y: 5}
+  speed: 2
+--- !u!4 &1891249560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891249558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1828486654458823117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,6 +761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828486654498136928, guid: 0777fc146c2a32446b6b4713f81430a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1828486654498136957, guid: 0777fc146c2a32446b6b4713f81430a7,
         type: 3}

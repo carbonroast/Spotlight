@@ -139,30 +139,28 @@ public class NPC : Humanoid {
         Invoke("AiControls", newActionTime);
     }
 
+
+
     public override void Death()
     {
-        Debug.Log("died");
         CancelInvoke();
         alive = false;
         SetAnimation("alive", alive);
         PlayAnimation("hit", 0, 0f);
         agent.isStopped = true;
         StartCoroutine("Fade");
-        Debug.Log("dieddied");
     }
 
-    IEnumerable Fade()
+    IEnumerator Fade()
     {
-        Debug.Log("out");
         for (float f = 1f; f >= 0; f -= 0.1f)
         {
-            Debug.Log("running");
             Color c = this.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
             c.a = f;
+            Debug.Log(c.a);
             this.GetComponentInChildren<SkinnedMeshRenderer>().material.color = c;
             yield return null;
         }
-        yield return null;
     }
 
     public void SetAnimation(string name, bool boolean)

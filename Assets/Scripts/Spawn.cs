@@ -21,19 +21,23 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         map = GameObject.Find("Map");
+
+        string[] controllers = Input.GetJoystickNames();
+        foreach(string controller in controllers)
+        {
+            Debug.Log(controller);
+        }
+
+        //Spawn Npcs
         for(int i = 0; i < units; i++)
         {
             Vector3 location = SpawnAt();
-            spawnNPC(location, i);
+            SpawnNPC(location, i);
         }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
+
 
     public Vector3 SpawnAt()
     {
@@ -42,7 +46,7 @@ public class Spawn : MonoBehaviour
         return new Vector3(randomX, 0, randomZ);
     }
 
-    public void spawnNPC(Vector3 location, int unitNumber)
+    public void SpawnNPC(Vector3 location, int unitNumber)
     {
 
         int randomPrefab = Random.Range(0, spawnables.Count);
@@ -53,5 +57,15 @@ public class Spawn : MonoBehaviour
         go.GetComponent<NPC>().speed = speed;
         go.GetComponent<NPC>().cooldownRange = cooldownRange;
         go.GetComponent<NPC>().searchRadius = searchRadius;
+    }
+
+    public void SpawnPlayerNPC(Vector3 location, int playerNumber)
+    {
+        int randomPrefab = Random.Range(0, spawnables.Count);
+        GameObject go = Instantiate(spawnables[randomPrefab], location, Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0));
+        go.name = "Player " + playerNumber;
+        go.layer = LayerMask.NameToLayer("Unit");
+        go.AddComponent<Player>();
+        go.GetComponent<Player>().speed = speed;
     }
 }
