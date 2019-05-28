@@ -22,7 +22,7 @@ public class Spawn : MonoBehaviour
     {
         map = GameObject.Find("Map");
 
-        string[] controllers = Input.GetJoystickNames();
+        string[] controllers = Luminosity.IO.InputManager.GetJoystickNames();
         foreach(string controller in controllers)
         {
             Debug.Log(controller);

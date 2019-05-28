@@ -10,7 +10,7 @@ public class Player : Humanoid {
     public Vector3 input;
     public bool fire;
     public List<GameObject> OverlappingNpcs;
-    public string player;
+    public Luminosity.IO.PlayerID player;
     // Use this for initialization
     public void Start()
     {
@@ -33,11 +33,14 @@ public class Player : Humanoid {
 
     public void GetInputs()
     {
-        float walkx = Input.GetAxisRaw("Horizontal");
-        float walkz = Input.GetAxisRaw("Vertical");
+        
+        
+        float walkx = Mathf.Round(Luminosity.IO.InputManager.GetAxis("Horizontal", player));
+        float walkz = Mathf.Round(Luminosity.IO.InputManager.GetAxis("Vertical", player));
+
         input = new Vector3(walkx, 0, walkz).normalized;
 
-        fire = Input.GetButtonDown("Fire1");
+        //fire = Input.GetButtonDown("Button 1");
     }
 
     public void SetPrefabHitBox()

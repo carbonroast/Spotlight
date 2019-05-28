@@ -29,8 +29,8 @@ public class Sniper : MonoBehaviour
 
     public void GetInputs()
     {
-        float walkx = Input.GetAxisRaw("Horizontal");
-        float walkz = Input.GetAxisRaw("Vertical");
+        float walkx = Luminosity.IO.InputManager.GetAxisRaw("Horizontal");
+        float walkz = Luminosity.IO.InputManager.GetAxisRaw("Vertical");
         //its a sprite
         input = new Vector3(walkx, walkz, 0).normalized;
 
