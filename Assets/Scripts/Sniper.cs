@@ -8,6 +8,7 @@ public class Sniper : MonoBehaviour
     public Vector3 input;
     public float speed;
     public bool fire;
+    public Luminosity.IO.PlayerID player;
     // Use this for initialization
     void Start()
     {
@@ -29,12 +30,12 @@ public class Sniper : MonoBehaviour
 
     public void GetInputs()
     {
-        float walkx = Luminosity.IO.InputManager.GetAxisRaw("Horizontal");
-        float walkz = Luminosity.IO.InputManager.GetAxisRaw("Vertical");
+        float walkx = Mathf.Round(Luminosity.IO.InputManager.GetAxis("Horizontal", player));
+        float walkz = Mathf.Round(Luminosity.IO.InputManager.GetAxis("Vertical", player));
         //its a sprite
         input = new Vector3(walkx, walkz, 0).normalized;
 
-        fire = Input.GetButtonDown("Fire1");
+        fire = Luminosity.IO.InputManager.GetButtonDown("Action Bottom", player);
     }
 
     public void Move()

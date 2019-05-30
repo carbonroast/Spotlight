@@ -17,10 +17,12 @@ public class NPC : Humanoid {
     public float newActionTime;
     public NavMeshPath path;
     public NavMeshAgent agent;
-
+    public bool animationRun;
 
     // Use this for initialization
     public void Start () {
+        alive = true;
+        animationRun = false;
         anim = GetComponent<Animator>();
         SetPrefabHitBox();
         NavMeshAgentSettings();
@@ -139,16 +141,23 @@ public class NPC : Humanoid {
         Invoke("AiControls", newActionTime);
     }
 
-
+    public void Killed()
+    {
+        alive = false;
+    }
 
     public override void Death()
     {
-        CancelInvoke();
-        alive = false;
-        SetAnimation("alive", alive);
-        PlayAnimation("hit", 0, 0f);
-        agent.isStopped = true;
-        StartCoroutine("Fade");
+        if(!animationRun)
+        {
+            CancelInvoke();
+            SetAnimation("alive", alive);
+            PlayAnimation("hit", 0, 0f);
+            agent.isStopped = true;
+            StartCoroutine("Fade");
+            animationRun = true;
+        }
+
     }
 
     IEnumerator Fade()

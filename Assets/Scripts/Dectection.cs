@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class Dectection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-        
-    }
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("dead");
         if (!other.GetComponent<Humanoid>().alive)
         {
             //dead
-            Debug.Log("dead");
+            other.GetComponent<Humanoid>().Death();
         }
     }
 }

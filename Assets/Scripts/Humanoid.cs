@@ -10,5 +10,7 @@ public class Humanoid : MonoBehaviour {
 
     public virtual void Walk() { }
     
+    //public virtual void Killed() { }
+
     public virtual void Death() { }
 }
