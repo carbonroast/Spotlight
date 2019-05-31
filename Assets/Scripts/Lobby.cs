@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+
 
 namespace Luminosity.IO
 { 
@@ -31,7 +31,16 @@ namespace Luminosity.IO
                 }
             }
 
-            foreach(PlayerID player in joinedPlayers)
+            foreach (PlayerID player in players)
+            {
+                if (InputManager.GetButtonDown("Action Right", player))
+                {
+                    RemovePlayer(player);
+
+                }
+            }
+
+            foreach (PlayerID player in joinedPlayers)
             {
                 if(InputManager.GetButtonDown("Start Button", player))
                 {
@@ -48,6 +57,7 @@ namespace Luminosity.IO
             //players.Add(PlayerID.Three);
             //players.Add(PlayerID.Four);
         }
+
 
         public void DisplayStart()
         {
@@ -66,6 +76,10 @@ namespace Luminosity.IO
             Debug.Log(player + " pressed key");
         }
 
+        public void RemovePlayer(PlayerID player)
+        {
+            joinedPlayers.Remove(player);
+        }
 
     }
 

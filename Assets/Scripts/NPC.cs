@@ -150,14 +150,20 @@ public class NPC : Humanoid {
     {
         if(!animationRun)
         {
-            CancelInvoke();
-            SetAnimation("alive", alive);
-            PlayAnimation("hit", 0, 0f);
-            agent.isStopped = true;
-            StartCoroutine("Fade");
-            animationRun = true;
+            Die();
         }
 
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(1.5f);
+        CancelInvoke();
+        SetAnimation("alive", alive);
+        PlayAnimation("hit", 0, 0f);
+        agent.isStopped = true;
+        StartCoroutine("Fade");
+        animationRun = true;
     }
 
     IEnumerator Fade()

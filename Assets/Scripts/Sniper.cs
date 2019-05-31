@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Sniper : MonoBehaviour
 {
     public Camera mainCamera;
+    public int ammo;
     public Vector3 input;
     public float speed;
     public bool fire;
@@ -13,6 +15,7 @@ public class Sniper : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        SetAmmo();
     }
 
     // Update is called once per frame
@@ -46,8 +49,10 @@ public class Sniper : MonoBehaviour
 
     public void Fire()
     {
-        if (fire)
+        if (fire && ammo > 0)
         {
+            ammo--;
+            SetAmmo();
             RaycastHit hit;
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(this.transform.position);
             Ray ray = mainCamera.ScreenPointToRay(screenPosition);
@@ -64,4 +69,10 @@ public class Sniper : MonoBehaviour
         }
 
     }
+    public void SetAmmo()
+    {
+        this.GetComponentInChildren<TextMeshProUGUI>().text = ammo.ToString();
+        //this.transform.Find("ammo").GetComponent<TextMeshProUGUI>().text = ammo.ToString();
+    }
+
 }
