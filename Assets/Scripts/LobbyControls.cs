@@ -9,16 +9,23 @@ namespace Luminosity.IO
         public PlayerID player;
         public Sprite sniper;
         public Sprite npc;
+        public Sprite currentSprite;
         // Start is called before the first frame update
         void Start()
         {
-
+           // Lobby.
+            //currentSprite = sniper;
         }
 
         // Update is called once per frame
         void Update()
         {
+           float var = Mathf.Round(InputManager.GetAxis("Vertical", player));
+        }
 
+        public void SetSprite()
+        {
+            //if()
         }
 
 

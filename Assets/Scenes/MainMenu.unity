@@ -203,6 +203,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437333426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437333429}
+  - component: {fileID: 437333428}
+  - component: {fileID: 437333427}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &437333427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437333426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &437333428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437333426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &437333429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437333426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521153260
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +560,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566036695}
   m_CullTransparentMesh: 0
---- !u!1 &796200779
+--- !u!1 &725372268
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -502,57 +568,658 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 796200782}
-  - component: {fileID: 796200781}
-  - component: {fileID: 796200780}
+  - component: {fileID: 725372271}
+  - component: {fileID: 725372270}
+  - component: {fileID: 725372269}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Input Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &796200780
+--- !u!114 &725372269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796200779}
+  m_GameObject: {fileID: 725372268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 73c7d115cd3b4a0448f5866f4a4fc5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &796200781
+  m_gamepadOne: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
+  m_gamepadTwo: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
+  m_gamepadThree: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
+  m_gamepadFour: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
+  m_joystickCheckFrequency: 1
+  m_triggerGravity: 3
+  m_triggerSensitivity: 3
+  m_dpadGravity: 3
+  m_dpadSensitivity: 3
+  m_dpadSnap: 1
+  m_ignoreTimescale: 1
+  m_useSharedProfile: 1
+--- !u!114 &725372270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796200779}
+  m_GameObject: {fileID: 725372268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: bb91bdba6520fd248bbc41b14d02e9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &796200782
+  m_controlSchemes:
+  - m_name: PS4_1
+    m_description: 
+    m_isExpanded: 1
+    m_uniqueID: 85c52da314c14ce8bc1999635dc6e642
+    m_actions:
+    - m_name: Horizontal
+      m_description: 
+      m_bindings:
+      - m_positive: 100
+        m_negative: 97
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 275
+        m_negative: 276
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Vertical
+      m_description: 
+      m_bindings:
+      - m_positive: 119
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 273
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: LookHorizontal
+      m_description: 
+      m_bindings:
+      - m_positive: 0
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 0.1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 1
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: LookVertical
+      m_description: 
+      m_bindings:
+      - m_positive: 0
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 0.1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 1
+        m_axis: 1
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Action Bottom
+      m_description: 
+      m_bindings:
+      - m_positive: 32
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 10
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Start Button
+      m_description: 
+      m_bindings:
+      - m_positive: 119
+        m_negative: 97
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 9
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Down
+      m_description: 
+      m_bindings:
+      - m_positive: 115
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 274
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Left
+      m_description: 
+      m_bindings:
+      - m_positive: 97
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 276
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Right
+      m_description: 
+      m_bindings:
+      - m_positive: 100
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 275
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Action Right
+      m_description: 
+      m_bindings: []
+    - m_name: UI_Submit
+      m_description: 
+      m_bindings:
+      - m_positive: 32
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 13
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Cancel
+      m_description: 
+      m_bindings:
+      - m_positive: 27
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+  - m_name: PS4_2
+    m_description: 
+    m_isExpanded: 1
+    m_uniqueID: dd2b6478fa7846a88c53d64cb347ef43
+    m_actions:
+    - m_name: Horizontal
+      m_description: 
+      m_bindings:
+      - m_positive: 100
+        m_negative: 97
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 275
+        m_negative: 276
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Vertical
+      m_description: 
+      m_bindings:
+      - m_positive: 119
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 273
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: LookHorizontal
+      m_description: 
+      m_bindings:
+      - m_positive: 0
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 0.1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 1
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: LookVertical
+      m_description: 
+      m_bindings:
+      - m_positive: 0
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 0.1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 1
+        m_axis: 1
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Action Bottom
+      m_description: 
+      m_bindings:
+      - m_positive: 32
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 10
+        m_gamepadAxis: 0
+        m_gamepadIndex: 1
+    - m_name: Start Button
+      m_description: 
+      m_bindings:
+      - m_positive: 119
+        m_negative: 97
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 7
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 9
+        m_gamepadAxis: 0
+        m_gamepadIndex: 1
+    - m_name: UI_Down
+      m_description: 
+      m_bindings:
+      - m_positive: 115
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 274
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Left
+      m_description: 
+      m_bindings:
+      - m_positive: 97
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 276
+        m_negative: 274
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Right
+      m_description: 
+      m_bindings:
+      - m_positive: 100
+        m_negative: 115
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 3
+        m_sensitivity: 3
+        m_scale: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 275
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Submit
+      m_description: 
+      m_bindings:
+      - m_positive: 32
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 13
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: UI_Cancel
+      m_description: 
+      m_bindings:
+      - m_positive: 27
+        m_negative: 0
+        m_deadZoneType: 0
+        m_deadZone: 0
+        m_gravity: 0
+        m_sensitivity: 0
+        m_scale: 1
+        m_snap: 0
+        m_invert: 0
+        m_type: 0
+        m_axis: 0
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+    - m_name: Action Right
+      m_description: 
+      m_bindings: []
+  m_playerOneDefault: 85c52da314c14ce8bc1999635dc6e642
+  m_playerTwoDefault: dd2b6478fa7846a88c53d64cb347ef43
+  m_playerThreeDefault: 
+  m_playerFourDefault: 
+  m_ignoreTimescale: 1
+  m_runScanningInLateUpdate: 0
+--- !u!4 &725372271
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796200779}
+  m_GameObject: {fileID: 725372268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -962,386 +1629,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688789010}
   m_CullTransparentMesh: 0
---- !u!1 &1899473052
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1899473054}
-  - component: {fileID: 1899473053}
-  - component: {fileID: 1899473055}
-  m_Layer: 0
-  m_Name: Input Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1899473053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899473052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb91bdba6520fd248bbc41b14d02e9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_controlSchemes:
-  - m_name: Default
-    m_description: 
-    m_isExpanded: 1
-    m_uniqueID: 85c52da314c14ce8bc1999635dc6e642
-    m_actions:
-    - m_name: Horizontal
-      m_description: 
-      m_bindings:
-      - m_positive: 100
-        m_negative: 97
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 2
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 275
-        m_negative: 276
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 2
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: Vertical
-      m_description: 
-      m_bindings:
-      - m_positive: 119
-        m_negative: 115
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 2
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 273
-        m_negative: 274
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 2
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: LookHorizontal
-      m_description: 
-      m_bindings:
-      - m_positive: 0
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 1
-        m_sensitivity: 0.1
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 1
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: LookVertical
-      m_description: 
-      m_bindings:
-      - m_positive: 0
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 1
-        m_sensitivity: 0.1
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 1
-        m_axis: 1
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: Jump
-      m_description: 
-      m_bindings:
-      - m_positive: 32
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Up
-      m_description: 
-      m_bindings:
-      - m_positive: 119
-        m_negative: 97
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 273
-        m_negative: 276
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Down
-      m_description: 
-      m_bindings:
-      - m_positive: 115
-        m_negative: 115
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 274
-        m_negative: 274
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Left
-      m_description: 
-      m_bindings:
-      - m_positive: 97
-        m_negative: 115
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 276
-        m_negative: 274
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Right
-      m_description: 
-      m_bindings:
-      - m_positive: 100
-        m_negative: 115
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 3
-        m_sensitivity: 3
-        m_scale: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 275
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 1
-        m_sensitivity: 1
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Submit
-      m_description: 
-      m_bindings:
-      - m_positive: 32
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-      - m_positive: 13
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-    - m_name: UI_Cancel
-      m_description: 
-      m_bindings:
-      - m_positive: 27
-        m_negative: 0
-        m_deadZoneType: 0
-        m_deadZone: 0
-        m_gravity: 0
-        m_sensitivity: 0
-        m_scale: 1
-        m_snap: 0
-        m_invert: 0
-        m_type: 0
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
-  m_playerOneDefault: 85c52da314c14ce8bc1999635dc6e642
-  m_playerTwoDefault: 
-  m_playerThreeDefault: 
-  m_playerFourDefault: 
-  m_ignoreTimescale: 1
-  m_runScanningInLateUpdate: 0
---- !u!4 &1899473054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899473052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1899473055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899473052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73c7d115cd3b4a0448f5866f4a4fc5aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_gamepadOne: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
-  m_gamepadTwo: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
-  m_gamepadThree: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
-  m_gamepadFour: {fileID: 11400000, guid: c1f6adf6eb9038f41a881abd0ff07904, type: 2}
-  m_joystickCheckFrequency: 1
-  m_triggerGravity: 3
-  m_triggerSensitivity: 3
-  m_dpadGravity: 3
-  m_dpadSensitivity: 3
-  m_dpadSnap: 1
-  m_ignoreTimescale: 1
-  m_useSharedProfile: 1

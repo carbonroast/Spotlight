@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
+    public void Update()
+    {
+        if (Luminosity.IO.InputManager.anyKeyDown)
+        {
+            Utils.Play();
+        }
+    }
     public void Quit()
     {
         Debug.Log("Quit");

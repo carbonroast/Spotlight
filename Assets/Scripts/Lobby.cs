@@ -72,12 +72,14 @@ namespace Luminosity.IO
         {
 
             joinedPlayers.Add(player);
-            this.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = "Hello";
-            Debug.Log(player + " pressed key");
+            Debug.Log(player.ToString() + " pressed key");
+            this.transform.Find(player.ToString()).GetComponentInChildren<TextMeshProUGUI>().text = "Hello";
+            
         }
 
         public void RemovePlayer(PlayerID player)
         {
+            this.transform.Find(player.ToString()).GetComponentInChildren<TextMeshProUGUI>().text = "Player " + player.ToString();
             joinedPlayers.Remove(player);
         }
 
