@@ -10,13 +10,22 @@ namespace Luminosity.IO
         public Sprite sniper;
         public Sprite npc;
         public Sprite currentSprite;
+
+        public GameObject lobby;
         // Start is called before the first frame update
+        private void Awake()
+        {
+            lobby = GameObject.Find("Lobby");
+        }
         void Start()
         {
-           // Lobby.
+           
+                
+            // Lobby.
             //currentSprite = sniper;
         }
 
+        
         // Update is called once per frame
         void Update()
         {
