@@ -10,10 +10,12 @@ namespace Luminosity.IO
     public class Lobby : MonoBehaviour
     {
         public List<PlayerID> players;
-        public List<PlayerID> joinedPlayers;
+        public static HashSet<PlayerID> hunterTeam = new HashSet<PlayerID>();
+        public static HashSet<PlayerID> npcTeam = new HashSet<PlayerID>();
 
-        public Sprite sprite_player;
         public Sprite sprite_start;
+        public Sprite npc;
+        public Sprite hunter;
 
         public string[] controllers;
 
@@ -23,45 +25,38 @@ namespace Luminosity.IO
 
         public void Awake()
         {
-          
+            CreatePlayers();
         }
 
         public void Start()
         {
-            string s = 3.ToString();
-            print(s);
-            AddPlayers();
+
+            
 
         }
         public void Update()
         {
             DetectControllers();
-            foreach (PlayerID player in players)
-            {
-                if (InputManager.GetButtonDown("Action Bottom", player))
-                {
-                    PlayerJoined(player);
-                    
-                }
-            }
+            DisplayStart();
 
-            foreach (PlayerID player in players)
-            {
-                if (InputManager.GetButtonDown("Action Right", player))
-                {
-                    RemovePlayer(player);
 
-                }
-            }
 
-            foreach (PlayerID player in joinedPlayers)
-            {
-                if(InputManager.GetButtonDown("Start Button", player))
-                {
-                    Utils.Play();
-                }
-            }
+
+        }
+
+        public void check()
+        {
             
+            print("NPC TEAM- " + npcTeam.Count + " | HUNTER TEAM- " + hunterTeam.Count);
+            foreach (PlayerID npc in npcTeam)
+            {
+                print("NPC Player- " + npc.ToString());
+            }
+            foreach (PlayerID hunter in hunterTeam)
+            {
+                print("HUNTER Player- " + hunter.ToString());
+            }
+
         }
 
         public void DetectControllers()
@@ -70,7 +65,7 @@ namespace Luminosity.IO
             for (int i=0; i < controllers.Length; i++)
             {
 
-                GameObject go = controllersGO["Player " + i];
+                GameObject go = controllersGO["Player " + (i+1)];
                 if (controllers[i] == "")
                 {
                     //deactivate
@@ -79,41 +74,76 @@ namespace Luminosity.IO
                 else
                 {
                     //activate is not already active
-                    
                     if(go.activeInHierarchy == false)
                     {
                         go.SetActive(true);
                     }
-                    
-                    
                 }
             }
         }
 
-        public void AddPlayers()
+        public void CreatePlayers()
         {
             
             for(int i=0; i < listOfPlayers.Count; i++)
             {
-                
-                players.Add(listOfPlayers[i]);
-                
-                GameObject go = new GameObject("Player " + i);
-
-                go.AddComponent<LobbyControls>().player = listOfPlayers[i];
+                GameObject go = new GameObject("Player " + (i+1));
+                go.AddComponent<LobbyControls>();
                 go.SetActive(false);
-                controllersGO.Add("Player " + i, go);
+                go.GetComponent<LobbyControls>().npc = npc;
+                go.GetComponent<LobbyControls>().hunter = hunter;
+                go.GetComponent<LobbyControls>().player = listOfPlayers[i];
+                controllersGO.Add("Player " + (i+1), go);
             }
+        }
+
+        public void AddPlayer(HashSet<PlayerID> team, PlayerID player)
+        {
+            team.Add(player);
+            print("Tryed to add Player " + player.ToString());
+        }
+
+        public void RemovePlayer(HashSet<PlayerID> team, PlayerID player)
+        {
+            PlayerID ? target = null;
+            
+            foreach (PlayerID joinedPlayer in team)
+            {
+                if(player == joinedPlayer)
+                {
+                    target = player;
+                    print("Removed Player " + player.ToString());
+                }
+            }
+            if(target != null)
+            {
+                team.Remove(target ?? default(PlayerID));
+            }
+            
         }
 
 
         public void DisplayStart()
         {
-            if(joinedPlayers.Count >= 2)
+            if(hunterTeam.Count > 0 & npcTeam.Count > 0)
             {
                 
                 this.transform.Find("Start").GetComponent<TextMeshProUGUI>().text = "Start";
                 this.transform.Find("Start").GetComponentInChildren<SpriteRenderer>().sprite = sprite_start;
+                foreach (PlayerID player in hunterTeam)
+                {
+                    if (InputManager.GetButtonDown("Start Button", player))
+                    {
+                        Utils.Play();
+                    }
+                }
+                foreach (PlayerID player in npcTeam)
+                {
+                    if (InputManager.GetButtonDown("Start Button", player))
+                    {
+                        Utils.Play();
+                    }
+                }
             }
             else
             {
@@ -122,22 +152,8 @@ namespace Luminosity.IO
             }
         }
 
-        public void PlayerJoined(PlayerID player)
-        {
 
-            joinedPlayers.Add(player);
-            Debug.Log(player.ToString() + " pressed key");
-            this.transform.Find(player.ToString()).GetComponentInChildren<TextMeshProUGUI>().text = "Hello";
-            this.transform.Find(player.ToString()).GetComponentInChildren<SpriteRenderer>().sprite = sprite_player;
-            
-        }
 
-        public void RemovePlayer(PlayerID player)
-        {
-            this.transform.Find(player.ToString()).GetComponentInChildren<TextMeshProUGUI>().text = "Player " + player.ToString();
-            this.transform.Find(player.ToString()).GetComponentInChildren<SpriteRenderer>().sprite = null;
-            joinedPlayers.Remove(player);
-        }
 
     }
 

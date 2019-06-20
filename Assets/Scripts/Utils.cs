@@ -9,4 +9,10 @@ public class Utils : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public enum lobbyStatus
+    {
+        Waiting,
+        Joined
+    }
 }
