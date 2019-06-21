@@ -107,7 +107,7 @@ namespace Luminosity.IO.Examples
 				m_instance = this;
 				m_state = PauseManagerState.Idle;
 				m_hardPause = false;
-				SceneManager.sceneLoaded += HandleLevelWasLoaded;
+                SceneManager.sceneLoaded += HandleLevelWasLoaded;
 
 				if(m_dontDestroyOnLoad)
 					DontDestroyOnLoad(gameObject);
@@ -163,7 +163,7 @@ namespace Luminosity.IO.Examples
 		{
 			m_pausedHandler = null;
 			m_unpausedHandler = null;
-			SceneManager.sceneLoaded -= HandleLevelWasLoaded;
+            SceneManager.sceneLoaded -= HandleLevelWasLoaded;
 		}
 		
 		private void OnApplicationQuit()

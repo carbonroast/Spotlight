@@ -10,8 +10,8 @@ namespace Luminosity.IO
     public class Lobby : MonoBehaviour
     {
         public List<PlayerID> players;
-        public static HashSet<PlayerID> hunterTeam = new HashSet<PlayerID>();
-        public static HashSet<PlayerID> npcTeam = new HashSet<PlayerID>();
+        public static Dictionary<PlayerID, GameObject> hunterTeam;
+        public static Dictionary<PlayerID, GameObject> npcTeam;
 
         public Sprite sprite_start;
         public Sprite npc;
@@ -25,12 +25,14 @@ namespace Luminosity.IO
 
         public void Awake()
         {
+            hunterTeam = new Dictionary<PlayerID, GameObject>();
+            npcTeam = new Dictionary<PlayerID, GameObject>();
+
             CreatePlayers();
         }
 
         public void Start()
         {
-
             
 
         }
@@ -48,13 +50,13 @@ namespace Luminosity.IO
         {
             
             print("NPC TEAM- " + npcTeam.Count + " | HUNTER TEAM- " + hunterTeam.Count);
-            foreach (PlayerID npc in npcTeam)
+            foreach (KeyValuePair<PlayerID, GameObject> npc in npcTeam)
             {
-                print("NPC Player- " + npc.ToString());
+                print("NPC Player- " + npc.Key.ToString());
             }
-            foreach (PlayerID hunter in hunterTeam)
+            foreach (KeyValuePair<PlayerID, GameObject> hunter in hunterTeam)
             {
-                print("HUNTER Player- " + hunter.ToString());
+                print("HUNTER Player- " + hunter.Key.ToString());
             }
 
         }
@@ -94,22 +96,26 @@ namespace Luminosity.IO
                 go.GetComponent<LobbyControls>().hunter = hunter;
                 go.GetComponent<LobbyControls>().player = listOfPlayers[i];
                 controllersGO.Add("Player " + (i+1), go);
+                go.AddComponent<Player>().enabled = false;
+                go.AddComponent<Sniper>().enabled = false;
+                go.AddComponent<ScriptManager>();
+                DontDestroyOnLoad(go);  
             }
         }
 
-        public void AddPlayer(HashSet<PlayerID> team, PlayerID player)
+        public void AddPlayer(Dictionary<PlayerID,GameObject> team,  PlayerID player, GameObject playerGO)
         {
-            team.Add(player);
+            team.Add(player,playerGO);
             print("Tryed to add Player " + player.ToString());
         }
 
-        public void RemovePlayer(HashSet<PlayerID> team, PlayerID player)
+        public void RemovePlayer(Dictionary<PlayerID, GameObject> team, PlayerID player, GameObject playerGO)
         {
             PlayerID ? target = null;
             
-            foreach (PlayerID joinedPlayer in team)
+            foreach (KeyValuePair<PlayerID, GameObject> joinedPlayer in team)
             {
-                if(player == joinedPlayer)
+                if(player == joinedPlayer.Key)
                 {
                     target = player;
                     print("Removed Player " + player.ToString());
@@ -127,22 +133,34 @@ namespace Luminosity.IO
         {
             if(hunterTeam.Count > 0 & npcTeam.Count > 0)
             {
-                
+                bool start = false;
                 this.transform.Find("Start").GetComponent<TextMeshProUGUI>().text = "Start";
                 this.transform.Find("Start").GetComponentInChildren<SpriteRenderer>().sprite = sprite_start;
-                foreach (PlayerID player in hunterTeam)
+                foreach (KeyValuePair<PlayerID,GameObject> player in hunterTeam)
                 {
-                    if (InputManager.GetButtonDown("Start Button", player))
+                    if (InputManager.GetButtonDown("Start Button", player.Key))
                     {
-                        Utils.Play();
+                        start = true;
                     }
                 }
-                foreach (PlayerID player in npcTeam)
+                foreach (KeyValuePair<PlayerID, GameObject> player in npcTeam)
                 {
-                    if (InputManager.GetButtonDown("Start Button", player))
+                    if (InputManager.GetButtonDown("Start Button", player.Key))
                     {
-                        Utils.Play();
+                        start = true;
                     }
+                }
+                if (start)
+                {
+                    foreach (KeyValuePair<PlayerID, GameObject> player in hunterTeam)
+                    {
+                        player.Value.GetComponent<ScriptManager>().SetActiveGameScripts();
+                    }
+                    foreach (KeyValuePair<PlayerID, GameObject> player in npcTeam)
+                    {
+                        player.Value.GetComponent<ScriptManager>().SetActiveGameScripts();
+                    }
+                    Utils.Play();
                 }
             }
             else

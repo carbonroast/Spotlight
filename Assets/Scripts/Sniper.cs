@@ -12,9 +12,14 @@ public class Sniper : MonoBehaviour
     public bool fire;
     public Luminosity.IO.PlayerID player;
     // Use this for initialization
-    void Start()
+
+    private void Awake()
     {
         mainCamera = Camera.main;
+    }
+    void Start()
+    {
+       
         SetAmmo();
     }
 

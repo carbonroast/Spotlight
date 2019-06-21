@@ -9,7 +9,7 @@ namespace Luminosity.IO
         public PlayerID player;
         public Sprite hunter;
         public Sprite npc;
-        public HashSet<PlayerID> currentTeam;
+        public Dictionary<PlayerID,GameObject> currentTeam;
         public Utils.lobbyStatus status;
         public GameObject lobby;
         public GameObject sprite;
@@ -18,7 +18,7 @@ namespace Luminosity.IO
         // Start is called before the first frame update
         private void Awake()
         {
-            
+
             returnToNeutral = true;
             status = Utils.lobbyStatus.Waiting;
 
@@ -44,7 +44,7 @@ namespace Luminosity.IO
 
                     sprite.GetComponentInChildren<SpriteRenderer>().sprite = npc;
                     
-                    lobby.GetComponent<Lobby>().AddPlayer(Lobby.npcTeam, player);
+                    lobby.GetComponent<Lobby>().AddPlayer(Lobby.npcTeam, player, this.gameObject);
                     currentTeam = Lobby.npcTeam;
                 }
             }
@@ -58,18 +58,18 @@ namespace Luminosity.IO
                         if (currentTeam == Lobby.npcTeam)
                         {
                             print("Hunter Team");
-                            lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player);
+                            lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                             currentTeam = Lobby.hunterTeam;
-                            lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player);
+                            lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player, this.gameObject);
                             
                             sprite.GetComponentInChildren<SpriteRenderer>().sprite = hunter;
                         }
                         else if (currentTeam == Lobby.hunterTeam)
                         {
                             print("NPC Team");
-                            lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player);
+                            lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                             currentTeam = Lobby.npcTeam;
-                            lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player);
+                            lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player, this.gameObject);
 
                             sprite.GetComponentInChildren<SpriteRenderer>().sprite = npc;
                         }
@@ -85,7 +85,7 @@ namespace Luminosity.IO
                 if (InputManager.GetButtonDown("Action Right", player))
                 {
                     print("right circle");
-                    lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player);
+                    lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                     sprite.GetComponentInChildren<SpriteRenderer>().sprite = null;
                     currentTeam = null;
                     status = Utils.lobbyStatus.Waiting;
@@ -118,7 +118,7 @@ namespace Luminosity.IO
             print("DISABLED");
             if(currentTeam != null)
             {
-                lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player);
+                lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                 sprite.GetComponentInChildren<SpriteRenderer>().sprite = null;
                 currentTeam = null;
                 status = Utils.lobbyStatus.Waiting;

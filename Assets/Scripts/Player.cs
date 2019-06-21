@@ -12,11 +12,18 @@ public class Player : Humanoid {
     public List<GameObject> OverlappingNpcs;
     public Luminosity.IO.PlayerID player;
     // Use this for initialization
-    public void Start()
+
+    public void Awake()
     {
         anim = GetComponent<Animator>();
-        SetPrefabHitBox();
         GetComponent<Rigidbody>().useGravity = false;
+    }
+
+    public void Start()
+    {
+        
+        SetPrefabHitBox();
+        
     }
 
     // Update is called once per frame
