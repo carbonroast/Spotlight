@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     {
         if (Luminosity.IO.InputManager.anyKeyDown)
         {
-            Utils.Play();
+            ViewController.AddLobbyScene();
         }
     }
     public void Quit()

@@ -5,44 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class ScriptManager : MonoBehaviour
 {
-    List<Component> lobbyComponenets;
-    List<Component> gameComponents;
+    public List<Component> lobbyComponenets;
+    public List<Component> gameComponents;
     // Start is called before the first frame update
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        lobbyComponenets = new List<Component>();
+        gameComponents = new List<Component>();
     }
 
     public void SetActiveLobbyScripts()
     {
-
+        ActiveScripts(lobbyComponenets, true);
+        ActiveScripts(gameComponents, false);
     }
 
     public void SetActiveGameScripts()
     {
-        foreach(Component component in lobbyComponenets)
-        {
-
-        }
-
+        ActiveScripts(gameComponents, true);
+        ActiveScripts(lobbyComponenets, false);
     }
 
     public void ActiveScripts(List<Component> scripts, bool active)
     {
         foreach (Component component in scripts)
         {
-
+            if (active)
+            {
+                GetComponent<MonoBehaviour>().enabled = true;
+            }
+            else
+            {
+                GetComponent<MonoBehaviour>().enabled = false;
+            }
         }
     }
 }

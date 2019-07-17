@@ -40,10 +40,6 @@ namespace Luminosity.IO
         {
             DetectControllers();
             DisplayStart();
-
-
-
-
         }
 
         public void check()
@@ -152,6 +148,7 @@ namespace Luminosity.IO
                 }
                 if (start)
                 {
+                    /*
                     foreach (KeyValuePair<PlayerID, GameObject> player in hunterTeam)
                     {
                         player.Value.GetComponent<ScriptManager>().SetActiveGameScripts();
@@ -160,7 +157,9 @@ namespace Luminosity.IO
                     {
                         player.Value.GetComponent<ScriptManager>().SetActiveGameScripts();
                     }
-                    Utils.Play();
+                    */
+                    Debug.Log("GAME STARTING");
+                    ViewController.AddGameScene();
                 }
             }
             else

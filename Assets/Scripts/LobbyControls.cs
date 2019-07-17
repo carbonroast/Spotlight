@@ -13,6 +13,7 @@ namespace Luminosity.IO
         public Utils.lobbyStatus status;
         public GameObject lobby;
         public GameObject sprite;
+        public ScriptManager sm;
         public bool returnToNeutral;
 
         // Start is called before the first frame update
@@ -25,11 +26,14 @@ namespace Luminosity.IO
         }
         void Start()
         {
-            print(player.ToString());
-            lobby = GameObject.Find("Lobby");
-            sprite = GameObject.Find("Lobby/Player " + player.ToString());
-            // Lobby.
-            //currentSprite = sniper;
+            lobby = GameObject.Find("LobbyUI");
+            sprite = GameObject.Find("LobbyUI/Player " + player.ToString());
+            sm = this.GetComponent<ScriptManager>();
+            sm.lobbyComponenets.Add(this.GetComponent<LobbyControls>());
+            sm.gameComponents.Add(this.GetComponent<CapsuleCollider>());
+            sm.gameComponents.Add(this.GetComponent<Animator>());
+            sm.gameComponents.Add(this.GetComponent<Player>());
+
         }
 
         
@@ -61,7 +65,10 @@ namespace Luminosity.IO
                             lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                             currentTeam = Lobby.hunterTeam;
                             lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player, this.gameObject);
-                            
+
+                            sm.gameComponents.Add(this.GetComponent<Sniper>());
+                            sm.gameComponents.Remove(this.GetComponent<Player>());
+
                             sprite.GetComponentInChildren<SpriteRenderer>().sprite = hunter;
                         }
                         else if (currentTeam == Lobby.hunterTeam)
@@ -70,6 +77,9 @@ namespace Luminosity.IO
                             lobby.GetComponent<Lobby>().RemovePlayer(currentTeam, player, this.gameObject);
                             currentTeam = Lobby.npcTeam;
                             lobby.GetComponent<Lobby>().AddPlayer(currentTeam, player, this.gameObject);
+
+                            sm.gameComponents.Add(this.GetComponent<Player>());
+                            sm.gameComponents.Remove(this.GetComponent<Sniper>());
 
                             sprite.GetComponentInChildren<SpriteRenderer>().sprite = npc;
                         }
@@ -105,7 +115,7 @@ namespace Luminosity.IO
 
         public void SetSprite()
         {
-            //if()
+
         }
 
         public void OnEnable()
